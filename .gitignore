@@ -12,3 +12,4 @@ dist/
 .coveralls.yml
 .coverage
 *.log
+node_modules/*
