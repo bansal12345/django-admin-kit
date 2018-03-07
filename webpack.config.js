@@ -1,10 +1,13 @@
 const path = require('path')
-const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const extractSass = new ExtractTextPlugin({
+    filename: 'css/style.css'
+})
 
 module.exports = {
     entry: {
-        base: ['./assets/js/base.js']
+        index: ['./assets/js/index.js', './assets/css/style.scss'],
     },
     output: {
         path: path.resolve(__dirname, './admin_kit/static/admin_kit'),
@@ -16,10 +19,29 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: 'babel-loader'
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                    minimize: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceComments: false
+                            }
+                        }
+                    ]
+                })
             }
         ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin()
+        extractSass
     ]
 }

@@ -12,4 +12,5 @@ dist/
 .coveralls.yml
 .coverage
 *.log
+package-lock.json
 node_modules/*

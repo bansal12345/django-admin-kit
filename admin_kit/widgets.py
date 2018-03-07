@@ -23,7 +23,7 @@ class SelectMultipleWidget(SelectMultiple):
 
         """
         css = {
-            'all': ('admin_kit/css/select.css', )
+            'all': ('admin_kit/css/style.css', )
         }
 
     def get_context(self, name, value, attrs):
